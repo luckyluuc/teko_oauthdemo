@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="logout.css" />
+    <title>Swisspass OAuth Demo Logout</title>
+    <script>
+      const onPageLoad = () => {
+        // remove loggedin-state from session storage
+        sessionStorage.removeItem("logged_in");
+
+        // back to main page after 5 seconds
+        setTimeout(() => {
+          let redirectLink = document.getElementById("redirectLink");
+          // .replace() is used to not save the current page in session history
+          // -> user can't use back button to navigate it
+          // source: https://developer.mozilla.org/en-US/docs/Web/API/Location/href
+          window.location.replace(redirectLink.href);
+        }, 5000); // auto redirect after 5 seconds
+
+        // get logout reason from url
+        const queryParams = new URLSearchParams(window.location.search);
+        const paramValue = queryParams.get("param");
+
+        const logoutReasonOutput = document.getElementById("logoutReason");
+        // show logout reason on logout screen for user information
+        logoutReasonOutput.textContent =
+          paramValue === "tokenRefreshFailed"
+            ? "reason: token refresh failed"
+            : "reason: logout clicked";
+      };
+    </script>
+  </head>
+  <body onLoad="onPageLoad();">
+    <!--infobutton svg-->
+    <svg
+      width="36"
+      height="36"
+      viewBox="0 0 36 36"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M4.25 18C4.25 10.318 10.3196 4.25 18 4.25C25.6804 4.25 31.75 10.318 31.75 18C31.75 25.6804 25.6804 31.75 18 31.75C10.3196 31.75 4.25 25.6804 4.25 18ZM18 3.25C9.76737 3.25 3.25 9.76561 3.25 18C3.25 26.2327 9.76733 32.75 18 32.75C26.2327 32.75 32.75 26.2327 32.75 18C32.75 9.76561 26.2326 3.25 18 3.25ZM19.22 11.9996V8.99955H18.22V11.9996H19.22ZM19.22 24.235H22.4707V25.235H14.9707V24.235H18.22V16.235H15V15.235H18.72H19.22V15.735V24.235Z"
+        fill="#26518a"
+      />
+    </svg>
+    <p>
+      you have been logged out and will be automatically redirected in 5s<br /><span
+        id="logoutReason"
+      ></span>
+    </p>
+    <a id="redirectLink" href="/oauth-demo">back to Swisspass OAuth Demo</a>
+  </body>
+
+  <footer></footer>
+</html>

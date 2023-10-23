@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!--bootstrap css-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>Swisspass OAuth Demo</title>
+  </head>
+  <header>
+    <nav class="navbar" id="navbar">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1" id="navbar-text"
+          >Swisspass OAuth Demo</span
+        >
+      </div>
+    </nav>
+  </header>
+  <main>
+    <body id="bootstrap-override-body">
+      <!--bootstrap js-->
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+      ></script>
+      <script type="module" defer src="main.js"></script>
+      <script type="module" defer src="utilities/setExampleContent.js"></script>
+      <div class="container">
+        <!--content when logged out-->
+        <div class="accordion" id="accordionLoggedOut">
+          <!--Login-->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="false"
+                aria-controls="collapseOne"
+              >
+                Login
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse show"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="container">
+                  <label class="form-label">Discovery Request</label>
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>GET</td>
+                            <td
+                              id="exampleDiscoveryUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="discoveryButton" class="primary-btn">
+                    Discovery
+                  </button>
+                </div>
+
+                <div class="response">
+                  <label class="form-label">Discovery Response</label>
+                  <textarea
+                    class="form-control"
+                    id="discoveryDataOutput"
+                    placeholder="discovery info"
+                    rows="3"
+                    readonly
+                  ></textarea>
+                </div>
+
+                <div class="separation-line"></div>
+
+                <div class="container">
+                  <label class="form-label">Login Request</label>
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>redirect</td>
+                            <td
+                              id="exampleLoginUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Params</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><div id="exampleLoginParamOutput"></div></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="loginButton" class="primary-btn" disabled>
+                    Login
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Registration-->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                Registration
+              </button>
+            </h2>
+
+            <div
+              id="collapseTwo"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="container">
+                  <label class="form-label">Registration Request</label>
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>redirect</td>
+                            <td
+                              id="exampleRegistrationUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Params</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div id="exampleRegistrationParamOutput"></div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="registrationButton" class="primary-btn">
+                    Create SwissPass login
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Password reset-->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                Password reset
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="container">
+                  <label class="form-label">Password Reset Request</label>
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>redirect</td>
+                            <td
+                              id="examplePasswordResetUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Params</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div id="examplePasswordResetParamOutput"></div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="passwordResetButton" class="primary-btn">
+                    Reset Password
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end of content when logged out-->
+
+        <!--content when logged in-->
+        <div class="accordion" id="accordionLoggedIn">
+          <!--Token-->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFour"
+                aria-expanded="false"
+                aria-controls="collapseFour"
+              >
+                Token
+              </button>
+            </h2>
+            <div
+              id="collapseFour"
+              class="accordion-collapse collapse show"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <!--token content-->
+                <div class="container">
+                  <labe
+                    >Authorization Code
+                    <small>(only valid to get tokens once)</small></labe
+                  >
+                  <textarea
+                    class="form-control"
+                    id="authorizationCodeOutput"
+                    placeholder="authorization code"
+                    rows="1"
+                    readonly
+                  ></textarea>
+                </div>
+
+                <div class="separation-line"></div>
+
+                <div class="container">
+                  <label class="form-label">Token Request</label>
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>POST</td>
+                            <td
+                              id="exampleTokenUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Options</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><div id="exampleTokenOptionsOutput"></div></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="tokenButton" class="primary-btn">Token</button>
+                </div>
+
+                <div class="response">
+                  <label class="form-label">Token Response</label>
+                  <textarea
+                    class="form-control"
+                    id="tokenDataOutput"
+                    placeholder="tokens"
+                    rows="4"
+                    readonly
+                  ></textarea>
+                </div>
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>Access Token</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <textarea
+                                class="form-control accessTokenDataOutput"
+                                placeholder="access token"
+                                rows="2"
+                                readonly
+                              ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>Refresh Token</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <textarea
+                                class="form-control refreshTokenDataOutput"
+                                placeholder="refresh token"
+                                rows="2"
+                                readonly
+                              ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container">
+                  <div class="col-md-12 col-sm-12">
+                    <table class="table table-borderless">
+                      <tbody>
+                        <tr>
+                          <td>ID Token</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <textarea
+                              class="form-control"
+                              id="idTokenDataOutput"
+                              placeholder="tokens"
+                              rows="4"
+                              readonly
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="redoLoginButton" class="primary-btn" disabled>
+                    Login
+                  </button>
+                </div>
+
+                <div class="separation-line"></div>
+
+                <div class="container">
+                  <label class="form-label">Token Refresh Request</label>
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>POST</td>
+                            <td
+                              id="exampleTokenRefreshUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Options</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div id="exampleTokenRefreshOptionsOutput"></div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="tokenRefreshButton" class="primary-btn">
+                    Refresh Tokens
+                  </button>
+                </div>
+
+                <div class="response">
+                  <label class="form-label"
+                    >Access Token Refresh Response</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="refreshTokenResponseOutput"
+                    placeholder="tokens"
+                    rows="4"
+                    readonly
+                  ></textarea>
+                </div>
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>Access Token</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <textarea
+                                class="form-control accessTokenDataOutput"
+                                placeholder="access token"
+                                rows="2"
+                                readonly
+                              ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>Refresh Token</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <textarea
+                                class="form-control refreshTokenDataOutput"
+                                placeholder="refresh token"
+                                rows="2"
+                                readonly
+                              ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Login data-->
+          <div class="accordion-item" id="logindata">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFive"
+                aria-expanded="false"
+                aria-controls="collapseFive"
+              >
+                Login data
+              </button>
+            </h2>
+            <div
+              id="collapseFive"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <!--logindata content-->
+
+                <div class="container">
+                  <label class="form-label">Userinfo Request</label>
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>GET</td>
+                            <td
+                              id="exampleUserinfoUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Options</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div id="exampleUserinfoOptionsOutput"></div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="userinfoButton" class="primary-btn">
+                    Userinfo
+                  </button>
+                </div>
+
+                <div class="response">
+                  <label class="form-label">Userinfo Response</label>
+                  <textarea
+                    class="form-control"
+                    id="userinfoDataOutput"
+                    placeholder="userinfo"
+                    rows="4"
+                    readonly
+                  ></textarea>
+                </div>
+
+                <div class="container">
+                  <label class="form-label">Logindata from userinfo </label>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>Login Email</td>
+                            <td id="authenEmailOutputData"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="separation-line"></div>
+
+                <div class="container">
+                  <label class="form-label">SSO-Ticket Request</label>
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>GET</td>
+                            <td
+                              id="exampleSsoTicketUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Options</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div id="exampleSsoTicketOptionsOutput"></div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="ssoTicketLoginDataButton" class="primary-btn">
+                    SSO-Ticket
+                  </button>
+                </div>
+
+                <div class="response">
+                  <label class="form-label">SSO-Ticket Response</label>
+                  <textarea
+                    class="form-control"
+                    id="ssoTicketLoginDataOutput"
+                    placeholder="sso-ticket"
+                    rows="3"
+                    readonly
+                  ></textarea>
+                </div>
+
+                <div class="separation-line"></div>
+
+                <div class="container">
+                  <label class="form-label"
+                    >Jump to logindata on swisspass.ch
+                    <small>(requires valid sso-ticket)</small></label
+                  >
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>redirect</td>
+                            <td
+                              id="exampleJumpLogindataUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Params</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div
+                                id="exampleJumpLogindataParamOutput"
+                                class="text-break"
+                              ></div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button
+                    id="changeLoginDataButton"
+                    class="primary-btn"
+                    disabled
+                  >
+                    Change logindata
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Customer data-->
+          <div class="accordion-item" id="customerdata">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseSix"
+                aria-expanded="false"
+                aria-controls="collapseSix"
+              >
+                Customer data
+              </button>
+            </h2>
+            <div
+              id="collapseSix"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <!--customerdata content-->
+                <div class="container">
+                  <label class="form-label"
+                    >Customer data from userinfo
+                    <small> (see request details in Login data) </small>
+                  </label>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>Last name</td>
+                            <td id="lastNameOutputData"></td>
+                          </tr>
+                          <tr>
+                            <td>First name</td>
+                            <td id="firstNameOutputData"></td>
+                          </tr>
+                          <tr>
+                            <td>Street</td>
+                            <td id="streetOutputData"></td>
+                          </tr>
+                          <tr>
+                            <td>Postal code</td>
+                            <td id="postalCodeOutputData"></td>
+                          </tr>
+                          <tr>
+                            <td>City</td>
+                            <td id="cityOutputData"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="userinfoCustomerDataButton" class="primary-btn">
+                    Userinfo
+                  </button>
+                </div>
+
+                <div class="separation-line"></div>
+
+                <div class="container">
+                  <label class="form-label"
+                    >SSO-Ticket
+                    <small> (see request details in Login data) </small>
+                  </label>
+
+                  <textarea
+                    class="form-control"
+                    id="ssoTicketCustomerDataOutput"
+                    placeholder="sso-ticket"
+                    rows="2"
+                    readonly
+                  ></textarea>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="ssoTicketCustomerDataButton" class="primary-btn">
+                    SSO-Ticket
+                  </button>
+                </div>
+
+                <div class="container">
+                  <label class="form-label"
+                    >Jump to customerdata on swisspass.ch
+                    <small>(requires valid sso-ticket)</small></label
+                  >
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>redirect</td>
+                            <td
+                              id="exampleJumpCustomerdataUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Params</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div
+                                id="exampleJumpCustomerdataParamOutput"
+                                class="text-break"
+                              ></div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button
+                    id="changeCustomerDataButton"
+                    class="primary-btn"
+                    disabled
+                  >
+                    Change customerdata
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Logout-->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseSeven"
+                aria-expanded="false"
+                aria-controls="collapseSeven"
+              >
+                Logout
+              </button>
+            </h2>
+            <div
+              id="collapseSeven"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <!--logout content-->
+
+                <div class="container">
+                  <label class="form-label">Revoke Token Request</label>
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>POST</td>
+                            <td
+                              id="exampleRevokeTokenUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Options</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div id="exampleRevokeTokenOptionsOutput"></div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>Access Token</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <textarea
+                                class="form-control accessTokenDataOutput"
+                                placeholder="access token"
+                                rows="2"
+                                readonly
+                              ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div
+                        class="d-grid gap-2 d-md-flex justify-content-md-end"
+                      >
+                        <button
+                          id="revokeAccessTokenButton"
+                          class="primary-btn"
+                        >
+                          Revoke AT
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>Refresh Token</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <textarea
+                                class="form-control refreshTokenDataOutput"
+                                placeholder="refresh token"
+                                rows="2"
+                                readonly
+                              ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div
+                        class="d-grid gap-2 d-md-flex justify-content-md-end"
+                      >
+                        <button
+                          id="revokeRefreshTokenButton"
+                          class="primary-btn"
+                        >
+                          Revoke RT
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="separation-line"></div>
+
+                <div class="container">
+                  <label class="form-label"
+                    >Logout Request
+                    <small>(AT and RT have to be revoked first)</small></label
+                  >
+                  <div class="row">
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>redirect</td>
+                            <td
+                              id="exampleLogoutUrlOutput"
+                              class="text-break"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-auto">
+                      <table class="table-sm table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th>Params</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div id="exampleLogoutParamOutput"></div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="logoutButton" class="primary-btn" disabled>
+                    Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end of content when logged in-->
+      </div>
+    </body>
+  </main>
+
+  <footer></footer>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>callback</title>
+    <!--meta http-equiv="refresh" content="0; url=index.html" /-->
+    <script>
+      const onPageLoad = () => {
+        // get parameters to be used in the demo app
+        const queryParams = new URLSearchParams(window.location.search);
+        console.log(queryParams);
+        const paramsToLookFor = ["code", "error", "error_description"];
+
+        for (const paramName of paramsToLookFor) {
+          const value = queryParams.get(paramName);
+          if (value) {
+            sessionStorage.setItem(paramName, value);
+          } else {
+            sessionStorage.removeItem(paramName);
+          }
+        }
+        // set logged_in state if code is present
+        if (sessionStorage.getItem("code")) {
+          sessionStorage.setItem("logged_in", true);
+        }
+
+        // back to main page
+        // .replace() is used to not save the current page in session history
+        // -> user can't use back button to navigate it
+        // source: https://developer.mozilla.org/en-US/docs/Web/API/Location/href
+        window.location.replace("/oauth-demo");
+      };
+    </script>
+  </head>
+  <body onLoad="onPageLoad();">
+    <p>callback</p>
+    <p><a href="/oauth-demo">back to Swisspass OAuth Demo</a></p>
+  </body>
+</html>

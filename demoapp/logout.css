@@ -1,0 +1,22 @@
+@font-face {
+    font-family: SBBWeb-Light;
+    src: url(fonts/SBBWeb-Light.woff2) format("woff2");
+  }
+
+  body {
+    text-align: center;
+    font-family: SBBWeb-Light;
+    color: #26518a;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 4px solid #26518a;
+    margin: 5px;
+  }
+
+  #logoutReason {
+    font-weight: bolder;
+  }
+
+  a {
+    color:#26518a;
+  }

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!--bootstrap css-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>Customer Data PoC</title>
+  </head>
+  <header>
+    <nav class="navbar" id="navbar">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1" id="navbar-text"
+          >Customer Data PoC</span
+        >
+      </div>
+    </nav>
+  </header>
+  <main>
+    <body id="bootstrap-override-body">
+      <!--bootstrap js-->
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+      ></script>
+      <script type="module" defer src="main.js"></script>
+      <form id="customerDataForm">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <label>Personal data</label>
+              <div class="mb-1">
+                <label for="anrede" class="form-label">Salutation</label>
+                <select class="form-select" id="anrede" disabled>
+                  <option value="Herr">Herr</option>
+                  <option value="Frau">Frau</option>
+                </select>
+              </div>
+              <div class="mb-1">
+                <label for="titel" class="form-label">Title</label>
+                <select class="form-select" id="titel" disabled>
+                  <option value="no title" selected>no title</option>
+                  <option value="DR">Dr.</option>
+                  <option value="PROF">Prof.</option>
+                  <option value="DR_PROF">Prof. Dr.</option>
+                </select>
+              </div>
+              <div class="mb-1">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" readonly />
+              </div>
+              <div class="mb-1">
+                <label for="vorname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="vorname" readonly />
+              </div>
+              <div class="mb-1">
+                <label for="geburtsdatum" class="form-label"
+                  >Date of Birth</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="geburtsdatum"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <label>Address Data</label>
+              <div class="mb-1">
+                <label for="strasseHnr" class="form-label"
+                  >Street & Number</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="strasseHnr"
+                  readonly
+                />
+              </div>
+              <div class="mb-1">
+                <label for="plz" class="form-label">Postal Code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="plz"
+                  pattern="[0-9]{4,5}"
+                  title="Please enter a 4 or 5-digit postal code."
+                  readonly
+                />
+              </div>
+              <div class="mb-1">
+                <label for="ort" class="form-label">City</label>
+                <input type="text" class="form-control" id="ort" readonly />
+              </div>
+              <div class="mb-1">
+                <label for="land" class="form-label">Country</label>
+                <input type="text" class="form-control" id="land" readonly />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <label>Contact Data</label>
+              <div class="mb-1">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" readonly />
+              </div>
+              <div class="mb-1">
+                <label for="mobil" class="form-label">Mobile</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="mobil"
+                  pattern="(\+41|0)[0-9]{9}"
+                  title="Please enter a valid mobile number starting with +41 or 0, followed by 9 digits."
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button
+                  type="submit"
+                  id="saveCustomerDataButton"
+                  class="primary-btn"
+                  disabled
+                >
+                  Save Data
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button id="loadCustomerDataButton" class="primary-btn">
+                Load Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button
+                id="changeCustomerDataButton"
+                class="primary-btn"
+                disabled
+              >
+                Change Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  </main>
+
+  <footer></footer>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>callback</title>
+    <!--meta http-equiv="refresh" content="0; url=index.html" /-->
+    <script>
+      function onPageLoad() {
+        // Get parameters to be used in demo page:
+        const queryParams = new URLSearchParams(window.location.search);
+        console.log(queryParams);
+        const paramsToLookFor = ["code", "error", "error_description"];
+        for (let index in paramsToLookFor) {
+          let value = queryParams.get(paramsToLookFor[index]);
+          if (value) {
+            sessionStorage.setItem(paramsToLookFor[index], value);
+          } else {
+            sessionStorage.removeItem(paramsToLookFor[index]);
+          }
+        }
+        if (sessionStorage.getItem("code")) {
+          sessionStorage.setItem("logged_in", true);
+        }
+        // Back to main page:
+        window.location.replace("/oauth/");
+      }
+    </script>
+  </head>
+  <body onLoad="onPageLoad();">
+    <p>callback</p>
+    <p><a href="/oauth/">back to main page</a></p>
+  </body>
+</html>

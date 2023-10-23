@@ -1,0 +1,110 @@
+@font-face {
+    font-family: SBBWeb-Light;
+    /* use lowercase letters for the font URL. 
+    Uppercase letters can give unexpected results in IE. 
+    soruce: https://www.w3schools.com/css/css3_fonts.asp */
+    src: url(fonts/SBBWeb-Light.woff2) format('woff2');
+}
+
+#bootstrap-override-body {
+    background-color: #FFFFFF;
+    font-family: SBBWeb-Light;
+}
+
+#navbar {
+    background-color: #C51416;
+}
+
+#navbar-text {
+    color: #FFFFFF;
+}
+
+.error {
+    color: red !important;
+    font-weight: bold !important;
+}
+
+.container textarea {
+    height:auto;
+    width: 99%;
+    font-size: smaller;
+}
+
+.response {
+    padding: 12px 0px 12px 12px;
+}
+
+.separation-line {
+    border-bottom: 1px solid #DDDDDD;
+    margin: 15px 0px 15px 0px;
+}
+
+input {
+    margin-right: 2px;
+}
+
+#accordionLoggedOut,
+#accordionLoggedIn {
+    display: none;
+    margin: 10px 0px 10px 0px;
+}
+
+button.accordion-button {
+    background-color: #F6F6F6;
+    color: #333333;
+    border: none;
+    font-weight: bold;
+}
+
+button.accordion-button:not(.collapsed) {
+    background-color: #F6F6F6;
+    color: #333333;
+}
+
+button.accordion-button:focus {
+    box-shadow: none;
+}
+
+textarea#authorizationCodeOutput,
+textarea#ssoTicketCustomerDataOutput {
+    resize: none !important;
+}
+
+textarea:focus {
+    box-shadow: 0 0 0 0.1rem #767676 !important;
+    border-color: #767676 !important;
+}
+
+.primary-btn {
+    color: #FFFFFF;
+    font-size: 20px;
+    height: 46px;
+    min-width: 180px;
+    background-color: #4A4A4A;
+    border: none;
+    padding: 7.5px 20px;
+    margin: 10px 10px 0px 10px;
+    float: right;
+}
+
+.primary-btn:hover {
+    background-color: #333333;
+    transition: 0.5s;
+}
+
+.primary-btn:disabled {
+    background-color: #eeeeee;
+    color: #bebdc2;
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        font-size: small;
+    }
+
+    .primary-btn {
+        width: 100%;
+        margin: 5px 0px 5px 0px;
+    }
+
+}
