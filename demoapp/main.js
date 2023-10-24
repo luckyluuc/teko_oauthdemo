@@ -18,16 +18,21 @@ import buttons from "./utilities/getButtons.js";
 import { getCodeChallenge } from "./utilities/codeChallenge.js";
 
 // set default values and export baseUrls to also use them inside modules/setExampleContent.js
-// different settings for localhost
-const PAGE_URL = "https://demo.login-test.swisspass.ch"; // später durch window.location.href ersetzen
-const REGEX_LOGIN_BASE_URL = /https:\/\/demo\.([^/]+\.[^/]+)$/;
-export const LOGIN_BASE_URL = PAGE_URL.match(REGEX_LOGIN_BASE_URL)[1];
+const PAGE_URL = window.location.href;
+// create a URL object to parse the current URL
+const url = new URL(PAGE_URL);
+// construct the trimmed URL to remove unnecessary params
+const trimmedPageURL = `${url.protocol}//${url.hostname}`;
+
+export const LOGIN_BASE_URL = PAGE_URL.includes("dev")
+  ? "login-dev.swisspass.ch"
+  : "login-test.swisspass.ch";
 const CLIENT_ID =
   LOGIN_BASE_URL === "login-dev.swisspass.ch"
     ? "swisspass_demo_entw"
     : "swisspass_demo_test";
-const LOGIN_REDIRECT_URL = "http://localhost:4200/oauth-demo/callback"; // später ersetzen durch PAGE_URL + "/oauth-demo/callback"
-const LOGOUT_REDIRECT_URL = "http://localhost:4200/oauth-demo/logout"; // später ersetzen durch PAGE_URL + "/oauth-demo/logout"
+const LOGIN_REDIRECT_URL = `${trimmedPageURL}/oauth-demo/callback`;
+const LOGOUT_REDIRECT_URL = `${trimmedPageURL}/oauth-demo/logout`;
 export const WWW_BASE_URL =
   CLIENT_ID === "swisspass_demo_entw"
     ? "www-deva.swisspass.ch"
@@ -218,6 +223,10 @@ buttons.ssoTicketLoginDataButton.addEventListener("click", async () => {
 
   // enable change login data button
   buttons.changeLoginDataButton.removeAttribute("disabled");
+  // disable the button again after 30 seconds
+  setTimeout(() => {
+    buttons.changeLoginDataButton.setAttribute("disabled", "true");
+  }, 25000);
 });
 
 buttons.changeLoginDataButton.addEventListener("click", () => {
@@ -265,6 +274,10 @@ buttons.ssoTicketCustomerDataButton.addEventListener("click", async () => {
 
   // enable change customer data button
   buttons.changeCustomerDataButton.removeAttribute("disabled");
+  // disable the button again after 30 seconds
+  setTimeout(() => {
+    buttons.changeCustomerDataButton.setAttribute("disabled", "true");
+  }, 25000);
 });
 
 buttons.changeCustomerDataButton.addEventListener("click", () => {

@@ -22,7 +22,6 @@
         if (sessionStorage.getItem("code")) {
           sessionStorage.setItem("logged_in", true);
         }
-
         // back to main page
         // .replace() is used to not save the current page in session history
         // -> user can't use back button to navigate it
