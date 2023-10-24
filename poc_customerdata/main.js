@@ -21,9 +21,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   codeChallenge = await getCodeChallenge();
   codeVerifier = sessionStorage.getItem("codeVerifier");
 
-  console.log("codeChallenge=" + codeChallenge);
-  console.log("codeVerifier=" + codeVerifier);
-
   discoveryData = await getDiscovery(LOGIN_BASE_URL, CLIENT_ID);
   if (sessionStorage.getItem("code")) {
     tokenData = await tokenRequest(
