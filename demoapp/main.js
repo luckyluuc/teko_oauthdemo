@@ -51,19 +51,12 @@ let discoveryData,
   codeVerifier;
 
 // state handling
-let isLoggedIn;
-if (sessionStorage.getItem("logged_in")) {
-  isLoggedIn = true;
-} else {
-  isLoggedIn = false;
-}
-
 // elements to show / collapse
 const accordionLoggedOut = document.getElementById("accordionLoggedOut");
 const accordionLoggedIn = document.getElementById("accordionLoggedIn");
 
 // show / collapse elements pending on isLoggedIn state
-if (isLoggedIn) {
+if (sessionStorage.getItem("logged_in")) {
   accordionLoggedOut.style.display = "none";
   accordionLoggedIn.style.display = "block";
 } else {
